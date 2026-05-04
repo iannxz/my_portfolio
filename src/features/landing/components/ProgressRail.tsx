@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-const chapters = ["Hero", "Sobre", "Skills", "Projetos", "Trajetória", "Segurança", "Contato"];
+import { landingChapters } from "../data/navigation";
 
 export default function ProgressRail() {
   const [progress, setProgress] = useState(0);
@@ -11,7 +10,7 @@ export default function ProgressRail() {
       const h = document.documentElement.scrollHeight - window.innerHeight;
       const p = h > 0 ? window.scrollY / h : 0;
       setProgress(p);
-      setActive(Math.min(chapters.length - 1, Math.floor(p * chapters.length)));
+      setActive(Math.min(landingChapters.length - 1, Math.floor(p * landingChapters.length)));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -27,7 +26,7 @@ export default function ProgressRail() {
         />
       </div>
       <div className="flex flex-col gap-2 text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-        {chapters.map((c, i) => (
+        {landingChapters.map((c, i) => (
           <span
             key={c}
             className={`transition-colors ${i === active ? "text-foreground" : ""}`}

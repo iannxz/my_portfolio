@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import MagneticButton from "@/components/ui/MagneticButton";
-import { phase } from "@/hooks/useScrollPhase";
+import MagneticButton from "../components/MagneticButton";
+import { profile, socialLinks } from "../data/profile";
+import { phase } from "../hooks/useScrollPhase";
 
-export default function Ch7Contact() {
+export default function ContactSection() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -55,10 +56,10 @@ export default function Ch7Contact() {
         </p>
 
         <div data-contact-reveal className="flex flex-wrap gap-3">
-          <MagneticButton href="https://github.com/iannxz" variant="primary">
+          <MagneticButton href={socialLinks.github} variant="primary">
             {"GitHub"}
           </MagneticButton>
-          <MagneticButton href="https://www.linkedin.com/in/iannarthur/">
+          <MagneticButton href={socialLinks.linkedin}>
             {"LinkedIn"}
           </MagneticButton>
         </div>
@@ -67,17 +68,17 @@ export default function Ch7Contact() {
       <footer className="container relative z-20 mt-24 max-w-5xl border-t border-border pt-10 md:mt-28">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <div className="mb-2 font-display text-2xl">{"Iann Arthur Martaroli"}</div>
+            <div className="mb-2 font-display text-2xl">{profile.name}</div>
             <div className="text-sm text-muted-foreground">
-              {"Desenvolvedor Front-End / Back-End \u00b7 Seguran\u00e7a aplicada"}
+              {profile.role}
             </div>
           </div>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="https://github.com/iannxz" className="transition-colors hover:text-foreground">
+            <a href={socialLinks.github} className="transition-colors hover:text-foreground">
               {"GitHub"}
             </a>
             <a
-              href="https://www.linkedin.com/in/iannarthur/"
+              href={socialLinks.linkedin}
               className="transition-colors hover:text-foreground"
             >
               {"LinkedIn"}

@@ -1,24 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ProfileVisual from "@/components/ProfileVisual";
-import { phase } from "@/hooks/useScrollPhase";
+import ProfileVisual from "../components/ProfileVisual";
+import { aboutLines, aboutShortPhrases } from "../data/about";
+import { phase } from "../hooks/useScrollPhase";
 
-const lines = [
-  "Estudante de Análise e Desenvolvimento de Sistemas e Técnico em Desenvolvimento de Sistemas.",
-  "Atuação prática em cibersegurança no Grupo NC.",
-  "Blue Team, EDR/XDR, SOAR, Firewall e hardening de endpoints.",
-  "Desenvolvimento, lógica e visão de segurança em uma só base.",
-];
-
-const shortPhrases = [
-  "Desenvolvimento com base sólida.",
-  "Segurança aplicada na prática.",
-  "Experiência em ambiente corporativo.",
-  "Projetos reais, estudo contínuo, evolução técnica.",
-];
-
-export default function Ch2About() {
+export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -86,7 +73,7 @@ export default function Ch2About() {
                 Quem está<br/>por trás do código.
               </h2>
               <div className="space-y-5 max-w-xl mb-10">
-                {lines.map((l, i) => (
+                {aboutLines.map((l, i) => (
                   <p
                     key={i}
                     data-about-line
@@ -97,7 +84,7 @@ export default function Ch2About() {
                 ))}
               </div>
               <div className="space-y-2 max-w-xl border-l border-border pl-5">
-                {shortPhrases.map((p, i) => (
+                {aboutShortPhrases.map((p, i) => (
                   <p
                     key={i}
                     data-about-line

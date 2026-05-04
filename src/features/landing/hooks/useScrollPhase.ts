@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export type CoreMode = "core" | "side" | "split" | "link" | "line" | "panel" | "signature";
 
@@ -17,7 +17,6 @@ export const phase: PhaseState = {
 };
 
 export function useGlobalScrollPhase() {
-  const raf = useRef<number>();
   useEffect(() => {
     const onScroll = () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
@@ -33,7 +32,6 @@ export function useGlobalScrollPhase() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointer);
-      if (raf.current) cancelAnimationFrame(raf.current);
     };
   }, []);
 }

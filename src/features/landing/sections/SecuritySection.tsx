@@ -1,45 +1,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { phase } from "@/hooks/useScrollPhase";
+import { securityCards, securityCertifications } from "../data/security";
+import { phase } from "../hooks/useScrollPhase";
 
-const cards = [
-  "Blue Team",
-  "SOC",
-  "EDR/XDR",
-  "Firewall",
-  "SOAR",
-  "Hardening",
-  "Análise de vulnerabilidades",
-  "Malware Analyzer",
-  "JWT Attacks and Detection",
-  "Obfuscated JavaScript",
-  "Python para Cibersegurança",
-  "Segurança em Nuvem",
-];
-
-const certs = [
-  { t: "JWT Attacks and Detection", e: "LetsDefend" },
-  { t: "Obfuscated JavaScript", e: "LetsDefend" },
-  { t: "Malware Analyzer", e: "LetsDefend" },
-  { t: "Certified Phishing Prevention Specialist", e: "Hack & Fix" },
-  { t: "Programação em Python para Cibersegurança", e: "SENAI" },
-  { t: "Fundamentos de Segurança em Nuvem (SC-900)", e: "Microsoft" },
-  { t: "Implantação de IA em Nuvem (AI-900)", e: "Microsoft" },
-  { t: "Implementação de Serviços em Nuvem (AZ-900)", e: "Microsoft" },
-  { t: "Python Essentials 1", e: "Cisco" },
-  { t: "Introduction to Cybersecurity", e: "Cisco" },
-  { t: "Computer Hardware Basics", e: "Cisco" },
-  { t: "Introdução ao Hacking e Pentest 2.0", e: "Solyd Offensive Security" },
-  { t: "Design UX/UI", e: "SENAI" },
-  { t: "Banco de Dados para Data Science", e: "SENAI" },
-  { t: "Soluções Integradas com IoT", e: "SENAI" },
-  { t: "Aplicativos Low Code (Oracle APEX)", e: "Oracle" },
-  { t: "Microsoft Power BI", e: "SENAI" },
-  { t: "Ética na Inteligência Artificial", e: "SENAI" },
-];
-
-export default function Ch6Security() {
+export default function SecuritySection() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -107,7 +72,7 @@ export default function Ch6Security() {
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border mb-24">
-          {cards.map((c, i) => (
+          {securityCards.map((c, i) => (
             <div
               key={c}
               data-panel
@@ -126,7 +91,7 @@ export default function Ch6Security() {
           Certificações & cursos
         </div>
         <div data-certs-grid className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
-          {certs.map((c) => (
+          {securityCertifications.map((c) => (
             <div
               key={c.t}
               data-cert

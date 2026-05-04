@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import MagneticButton from "@/components/ui/MagneticButton";
-import ProfileVisual from "@/components/ProfileVisual";
-import { phase } from "@/hooks/useScrollPhase";
+import MagneticButton from "../components/MagneticButton";
+import ProfileVisual from "../components/ProfileVisual";
+import { profile, socialLinks } from "../data/profile";
+import { phase } from "../hooks/useScrollPhase";
 
-export default function Ch1Hero() {
+export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function Ch1Hero() {
         </div>
 
         <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-medium leading-[0.95] mb-6">
-          {"Iann Arthur Martaroli".split(" ").map((w, i) => (
+          {profile.name.split(" ").map((w, i) => (
             <span key={i} className="inline-block overflow-hidden align-bottom mr-3">
               <span data-hero-word className="inline-block">{w}</span>
             </span>
@@ -83,7 +84,7 @@ export default function Ch1Hero() {
 
         <div data-hero-meta className="flex flex-wrap items-center justify-center gap-3">
           <MagneticButton href="#projetos" variant="primary">Ver projetos</MagneticButton>
-          <MagneticButton href="https://github.com/iannxz">GitHub</MagneticButton>
+          <MagneticButton href={socialLinks.github}>GitHub</MagneticButton>
           <MagneticButton href="#contato">Contato</MagneticButton>
         </div>
       </div>

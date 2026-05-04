@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { profile } from "../data/profile";
 
 // =============================================================
 // Para trocar a foto: substitua o arquivo em `public/profile.jpg`
 // ou altere a constante abaixo apontando para outro caminho.
 // =============================================================
-export const profileImage = "/profile.jpg";
-export const profileAlt = "Foto de Iann Arthur Martaroli";
+const profileImage = profile.image;
+const profileAlt = profile.imageAlt;
 
 interface ProfileVisualProps {
   variant?: "hero" | "about";

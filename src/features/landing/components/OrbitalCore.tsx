@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { phase } from "@/hooks/useScrollPhase";
+import { phase } from "../hooks/useScrollPhase";
 
 interface Node {
   baseAngle: number;
@@ -21,7 +21,7 @@ export default function OrbitalCore() {
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d", { alpha: true })!;
     let raf = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const NODE_COUNT = isMobile ? NODE_COUNT_MOBILE : NODE_COUNT_DESKTOP;
 
@@ -97,7 +97,7 @@ export default function OrbitalCore() {
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         const angle = n.baseAngle + t * n.speed;
-        let r = n.baseRadius * cur.scale * (1 + pointerInfluence * 0.06) * baseScale;
+        const r = n.baseRadius * cur.scale * (1 + pointerInfluence * 0.06) * baseScale;
         const [ox, oy] = clusterOffsets[n.cluster];
         const spreadPx = 140 * (cur.spread + pointerInfluence * 0.08) * baseScale;
         let x = cx + Math.cos(angle) * r + ox * spreadPx;

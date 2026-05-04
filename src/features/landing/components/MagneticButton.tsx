@@ -42,9 +42,13 @@ export default function MagneticButton({ children, href, onClick, variant = "gho
   );
 
   if (href) {
+    const setAnchorRef = (node: HTMLAnchorElement | null) => {
+      ref.current = node;
+    };
+
     return (
       <a
-        ref={ref as any}
+        ref={setAnchorRef}
         href={href}
         target={href.startsWith("http") ? "_blank" : undefined}
         rel="noreferrer"
@@ -56,8 +60,12 @@ export default function MagneticButton({ children, href, onClick, variant = "gho
       </a>
     );
   }
+  const setButtonRef = (node: HTMLButtonElement | null) => {
+    ref.current = node;
+  };
+
   return (
-    <button ref={ref as any} onMouseMove={onMove} onMouseLeave={onLeave} onClick={onClick} className={styles}>
+    <button ref={setButtonRef} onMouseMove={onMove} onMouseLeave={onLeave} onClick={onClick} className={styles}>
       {content}
     </button>
   );

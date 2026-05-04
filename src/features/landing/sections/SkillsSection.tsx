@@ -1,16 +1,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { phase } from "@/hooks/useScrollPhase";
+import { skillGroups } from "../data/skills";
+import { phase } from "../hooks/useScrollPhase";
 
-const groups = [
-  { title: "Desenvolvimento", items: ["HTML", "CSS", "JavaScript", "Python", "Streamlit", "React", "Tailwind", "TypeScript"] },
-  { title: "Cibersegurança", items: ["Blue Team", "SOC", "EDR/XDR", "SOAR", "Firewall", "Hardening", "Análise de Vulnerabilidades"] },
-  { title: "Cloud & Dados", items: ["Azure (AZ-900)", "AI-900", "SC-900", "Power BI", "Banco de Dados", "Oracle APEX"] },
-  { title: "Estudos & Labs", items: ["LLMs", "IoT (ESP32)", "Pentest (Solyd)", "Phishing Prevention", "Malware Analysis", "JWT Attacks"] },
-];
-
-export default function Ch3Skills() {
+export default function SkillsSection() {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -66,7 +60,7 @@ export default function Ch3Skills() {
             Skills como módulos<br/>de um mesmo sistema.
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {groups.map((g, i) => (
+            {skillGroups.map((g, i) => (
               <div
                 key={g.title}
                 data-skill-card

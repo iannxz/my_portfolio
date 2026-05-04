@@ -47,39 +47,46 @@ Ao longo da página, o componente de fundo reage ao scroll e ao movimento do mou
 ## Estrutura do projeto
 
 ```text
-orbital-code-journey/
+my_portfolio/
 ├── public/
 │   ├── favicon.ico
 │   ├── profile.jpg
-│   ├── placeholder.svg
 │   └── robots.txt
 ├── src/
+│   ├── app/
+│   │   ├── App.tsx
+│   │   └── providers.tsx
 │   ├── components/
-│   │   ├── chapters/
-│   │   │   ├── Ch1Hero.tsx
-│   │   │   ├── Ch2About.tsx
-│   │   │   ├── Ch3Skills.tsx
-│   │   │   ├── Ch4Projects.tsx
-│   │   │   ├── Ch5Timeline.tsx
-│   │   │   ├── Ch6Security.tsx
-│   │   │   └── Ch7Contact.tsx
-│   │   ├── OrbitalCore.tsx
-│   │   ├── ProfileVisual.tsx
-│   │   ├── ProgressRail.tsx
 │   │   └── ui/
+│   ├── features/
+│   │   └── landing/
+│   │       ├── LandingPage.tsx
+│   │       ├── components/
+│   │       │   ├── BrandHeader.tsx
+│   │       │   ├── MagneticButton.tsx
+│   │       │   ├── OrbitalCore.tsx
+│   │       │   ├── ProfileVisual.tsx
+│   │       │   └── ProgressRail.tsx
+│   │       ├── data/
+│   │       ├── hooks/
+│   │       └── sections/
+│   │           ├── AboutSection.tsx
+│   │           ├── ContactSection.tsx
+│   │           ├── HeroSection.tsx
+│   │           ├── ProjectsSection.tsx
+│   │           ├── SecuritySection.tsx
+│   │           ├── SkillsSection.tsx
+│   │           └── TimelineSection.tsx
 │   ├── hooks/
-│   │   ├── useLenis.ts
-│   │   ├── useScrollPhase.ts
-│   │   └── use-mobile.tsx
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
 │   ├── pages/
-│   │   ├── Index.tsx
 │   │   └── NotFound.tsx
+│   ├── styles/
+│   │   └── globals.css
 │   ├── test/
-│   │   ├── example.test.ts
 │   │   └── setup.ts
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
+│   └── main.tsx
 ├── index.html
 ├── package.json
 ├── tailwind.config.ts
@@ -133,7 +140,7 @@ npm run preview
 
 ### 1. Página principal
 
-O arquivo `src/pages/Index.tsx` monta a experiência completa.
+O arquivo `src/features/landing/LandingPage.tsx` monta a experiência completa.
 
 Ele é responsável por:
 
@@ -145,7 +152,7 @@ Ele é responsável por:
 
 ### 2. Fundo animado
 
-O arquivo `src/components/OrbitalCore.tsx` desenha o fundo em canvas.
+O arquivo `src/features/landing/components/OrbitalCore.tsx` desenha o fundo em canvas.
 
 Ele trabalha com os modos:
 
@@ -157,7 +164,7 @@ Ele trabalha com os modos:
 - `panel`
 - `signature`
 
-Esses modos são controlados por `src/hooks/useScrollPhase.ts`, que mantém:
+Esses modos são controlados por `src/features/landing/hooks/useScrollPhase.ts`, que mantém:
 
 - modo atual do núcleo visual
 - progresso global do scroll
@@ -165,13 +172,13 @@ Esses modos são controlados por `src/hooks/useScrollPhase.ts`, que mantém:
 
 ### 3. Scroll suave
 
-O hook `src/hooks/useLenis.ts` integra o Lenis com o ScrollTrigger para manter a sincronia entre movimento e animações.
+O hook `src/features/landing/hooks/useLenis.ts` integra o Lenis com o ScrollTrigger para manter a sincronia entre movimento e animações.
 
 ## Capítulos do portfólio
 
 ### Capítulo 01 · Hero
 
-Arquivo: `src/components/chapters/Ch1Hero.tsx`
+Arquivo: `src/features/landing/sections/HeroSection.tsx`
 
 Conteúdo principal:
 
@@ -182,7 +189,7 @@ Conteúdo principal:
 
 ### Capítulo 02 · Sobre
 
-Arquivo: `src/components/chapters/Ch2About.tsx`
+Arquivo: `src/features/landing/sections/AboutSection.tsx`
 
 Conteúdo principal:
 
@@ -193,7 +200,7 @@ Conteúdo principal:
 
 ### Capítulo 03 · Skills
 
-Arquivo: `src/components/chapters/Ch3Skills.tsx`
+Arquivo: `src/features/landing/sections/SkillsSection.tsx`
 
 Grupos atuais:
 
@@ -204,7 +211,7 @@ Grupos atuais:
 
 ### Capítulo 04 · Projetos
 
-Arquivo: `src/components/chapters/Ch4Projects.tsx`
+Arquivo: `src/features/landing/sections/ProjectsSection.tsx`
 
 Projetos listados:
 
@@ -225,7 +232,7 @@ Cada projeto possui:
 
 ### Capítulo 05 · Trajetória
 
-Arquivo: `src/components/chapters/Ch5Timeline.tsx`
+Arquivo: `src/features/landing/sections/TimelineSection.tsx`
 
 Apresenta uma timeline vertical com 5 marcos:
 
@@ -237,7 +244,7 @@ Apresenta uma timeline vertical com 5 marcos:
 
 ### Capítulo 06 · Segurança aplicada
 
-Arquivo: `src/components/chapters/Ch6Security.tsx`
+Arquivo: `src/features/landing/sections/SecuritySection.tsx`
 
 Inclui:
 
@@ -248,7 +255,7 @@ Inclui:
 
 ### Capítulo 07 · Contato
 
-Arquivo: `src/components/chapters/Ch7Contact.tsx`
+Arquivo: `src/features/landing/sections/ContactSection.tsx`
 
 Inclui:
 
@@ -259,7 +266,7 @@ Inclui:
 
 ## Roteamento
 
-O roteamento está em `src/App.tsx`.
+O roteamento está em `src/app/App.tsx`.
 
 Rotas atuais:
 
@@ -270,9 +277,9 @@ Rotas atuais:
 
 O projeto já possui configuração de teste com Vitest.
 
-Arquivo de exemplo:
+Arquivo de teste de dados:
 
-- `src/test/example.test.ts`
+- `src/features/landing/data/landing-data.test.ts`
 
 Também há configuração de lint via ESLint no script:
 
