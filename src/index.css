@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Premium dark cinematic palette */
+    --background: 220 15% 6%;
+    --foreground: 40 15% 92%;
+
+    --card: 220 12% 9%;
+    --card-foreground: 40 15% 92%;
+
+    --popover: 220 12% 9%;
+    --popover-foreground: 40 15% 92%;
+
+    --primary: 40 15% 92%;
+    --primary-foreground: 220 15% 6%;
+
+    --secondary: 220 10% 12%;
+    --secondary-foreground: 40 15% 92%;
+
+    --muted: 220 10% 14%;
+    --muted-foreground: 220 8% 55%;
+
+    --accent: 215 60% 65%;
+    --accent-foreground: 220 15% 6%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 40 15% 92%;
+
+    --border: 220 10% 16%;
+    --input: 220 10% 16%;
+    --ring: 215 60% 65%;
+
+    --radius: 0.5rem;
+
+    /* Custom palette */
+    --graphite: 220 10% 12%;
+    --metal: 220 8% 35%;
+    --off-white: 40 15% 92%;
+    --accent-blue: 215 60% 65%;
+    --accent-silver: 220 10% 75%;
+    --accent-violet: 260 30% 55%;
+
+    --gradient-core: radial-gradient(circle at center, hsl(var(--accent-blue) / 0.25), transparent 70%);
+    --gradient-edge: linear-gradient(180deg, transparent, hsl(var(--background)));
+    --shadow-elegant: 0 30px 80px -20px hsl(220 30% 0% / 0.6);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body { @apply bg-background text-foreground; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .font-display { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.02em; }
+  ::selection { background: hsl(var(--accent-blue) / 0.3); color: hsl(var(--off-white)); }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .noise {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .reveal-mask { clip-path: inset(0 0 100% 0); }
+  .text-balance { text-wrap: balance; }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
