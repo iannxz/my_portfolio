@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="./public/profile.jpg" alt="Retrato de Iann Arthur Martaroli" width="180" />
   <h1>Iann Arthur Martaroli</h1>
   <p>
     <strong>Desenvolvedor com foco em interfaces bem resolvidas, sistemas claros e cibersegurança aplicada.</strong>
