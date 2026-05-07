@@ -150,7 +150,7 @@ export default function Ch6Security() {
           <div className="p-5 border border-border rounded-xl bg-card/40">
             <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Destaque</div>
             <div className="text-sm leading-relaxed">
-              Selecionado em concurso Microsoft × SENAI Sumaré — bolsa concedida a apenas 20 estudantes da região.
+              Selecionado em concurso de inglês Microsoft × SENAI Sumaré — bolsa concedida a apenas 20 estudantes da região.
             </div>
           </div>
         </div>

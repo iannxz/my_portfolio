@@ -4,10 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { phase } from "@/hooks/useScrollPhase";
 
 const groups = [
-  { title: "Desenvolvimento", items: ["HTML", "CSS", "JavaScript", "Python", "Streamlit", "React", "Tailwind", "TypeScript"] },
+  { title: "Desenvolvimento", items: ["HTML", "CSS", "JavaScript", "Python", "Streamlit", "React", "Claude Code", "TypeScript"] },
   { title: "Cibersegurança", items: ["Blue Team", "SOC", "EDR/XDR", "SOAR", "Firewall", "Hardening", "Análise de Vulnerabilidades"] },
-  { title: "Cloud & Dados", items: ["Azure (AZ-900)", "AI-900", "SC-900", "Power BI", "Banco de Dados", "Oracle APEX"] },
-  { title: "Estudos & Labs", items: ["LLMs", "IoT (ESP32)", "Pentest (Solyd)", "Phishing Prevention", "Malware Analysis", "JWT Attacks"] },
+  { title: "Cloud & Dados", items: ["Azure (AZ-900)", "AI-900", "SC-900", "Power BI", "MySQL", "Oracle APEX"] },
+  { title: "Estudos & Labs", items: ["LLMs", "IoT (ESP32)", "Pentest", "Incident Response", "Malware Analysis", "CTFs"] },
 ];
 
 export default function Ch3Skills() {
