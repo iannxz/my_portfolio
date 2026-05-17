@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProfileVisual from "@/components/ProfileVisual";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { phase } from "@/hooks/useScrollPhase";
 
 const lines = [
@@ -20,6 +21,7 @@ const shortPhrases = [
 
 export default function Ch2About() {
   const ref = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,6 +34,34 @@ export default function Ch2About() {
         onEnter: () => (phase.mode = "side"),
         onEnterBack: () => (phase.mode = "side"),
       });
+
+      if (isMobile) {
+        items.forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 24,
+            duration: 0.65,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+            },
+          });
+        });
+
+        gsap.from("[data-about-photo]", {
+          opacity: 0,
+          y: 24,
+          duration: 0.65,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "[data-about-photo]",
+            start: "top 88%",
+          },
+        });
+
+        return;
+      }
 
       items.forEach((el, i) => {
         gsap.fromTo(
@@ -71,15 +101,15 @@ export default function Ch2About() {
       );
     }, ref);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "260vh" }}>
-      <div className="sticky top-0 h-screen flex items-center">
+    <section ref={ref} id="sobre" className="relative" style={isMobile ? undefined : { height: "260vh" }}>
+      <div className={isMobile ? "py-24" : "sticky top-0 h-screen flex items-center"}>
         <div className="container max-w-6xl">
           <div className="grid md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-7">
-              <div className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+              <div className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground mb-6 md:text-[10px] md:tracking-[0.4em]">
                 Capítulo 02 · Sobre
               </div>
               <h2 className="font-display text-4xl md:text-6xl font-medium mb-10 leading-tight">

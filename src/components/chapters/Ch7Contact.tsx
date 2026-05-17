@@ -34,27 +34,36 @@ export default function Ch7Contact() {
     <section
       id="contato"
       ref={ref}
-      className="relative overflow-hidden pt-12 pb-10 md:pt-20 md:pb-12"
+      className="relative overflow-hidden pt-12 pb-28 md:pt-20 md:pb-12"
     >
       <div className="container relative z-20 max-w-5xl">
-        <div data-contact-reveal className="mb-6 text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+        <div data-contact-reveal className="mb-6 text-[11px] uppercase tracking-[0.28em] text-muted-foreground md:text-[10px] md:tracking-[0.4em]">
           {"Cap\u00edtulo 07 \u00b7 Contato"}
         </div>
         <h2
           data-contact-reveal
           className="mb-8 max-w-4xl text-balance font-display text-4xl font-medium leading-[1.05] md:text-6xl"
         >
-          {"Vamos construir algo funcional, seguro e bem feito?"}
+          {"Quer conhecer melhor minha trajetória técnica? Vamos conversar."}
         </h2>
         <p
           data-contact-reveal
           className="mb-12 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          {"Estou aberto a oportunidades, projetos, networking e conversas sobre "}
+          {"Estou aberto a oportunidades, networking e conversas sobre "}
           {"desenvolvimento, tecnologia e seguran\u00e7a."}
         </p>
 
-        <div data-contact-reveal className="flex flex-wrap gap-3">
+        <div data-contact-reveal className="flex flex-wrap gap-3 md:hidden">
+          <MagneticButton href="https://www.linkedin.com/in/iannarthur/" variant="primary">
+            {"LinkedIn"}
+          </MagneticButton>
+          <MagneticButton href="https://github.com/iannxz">
+            {"GitHub"}
+          </MagneticButton>
+        </div>
+
+        <div data-contact-reveal className="hidden flex-wrap gap-3 md:flex">
           <MagneticButton href="https://github.com/iannxz" variant="primary">
             {"GitHub"}
           </MagneticButton>
@@ -84,7 +93,7 @@ export default function Ch7Contact() {
             </a>
           </div>
         </div>
-        <div className="mt-10 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <div className="mt-10 text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-[10px] md:tracking-[0.3em]">
           {"\u00a9 2026 \u2014 Constru\u00eddo com c\u00f3digo, caf\u00e9 e cuidado."}
         </div>
       </footer>

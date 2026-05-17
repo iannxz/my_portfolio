@@ -49,9 +49,9 @@ export default function Ch1Hero() {
   }, []);
 
   return (
-    <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section ref={ref} id="inicio" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:h-screen">
       <div data-hero-content className="relative z-20 text-center px-6 max-w-5xl">
-        <div data-hero-meta className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-8">
+        <div data-hero-meta className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground mb-8 md:text-[10px] md:tracking-[0.4em]">
           Portfólio · 2026
         </div>
 
@@ -67,7 +67,7 @@ export default function Ch1Hero() {
           ))}
         </h1>
 
-        <p data-hero-line className="text-xs sm:text-sm tracking-[0.3em] uppercase text-accent mb-6">
+        <p data-hero-line className="text-[11px] sm:text-sm tracking-[0.22em] uppercase text-accent mb-6 md:tracking-[0.3em]">
           Desenvolvedor · Cibersegurança
         </p>
 
@@ -76,19 +76,28 @@ export default function Ch1Hero() {
           <span data-hero-line className="block text-foreground">Segurança que faz sentido.</span>
         </p>
 
-        <p data-hero-line className="text-sm md:text-base text-muted-foreground/80 max-w-xl mx-auto mb-10 leading-relaxed">
-          Crio interfaces, sistemas e soluções digitais com foco em clareza,
-          organização, performance e segurança aplicada.
+        <p data-hero-line className="mx-auto mb-6 max-w-xs text-sm leading-relaxed text-muted-foreground/85 md:hidden">
+          Estudante de ADS, aprendiz em cibersegurança no Grupo NC e foco em desenvolvimento com segurança aplicada.
         </p>
 
-        <div data-hero-meta className="flex flex-wrap items-center justify-center gap-3">
+        <p data-hero-line className="hidden text-sm md:block md:text-base text-muted-foreground/80 max-w-xl mx-auto mb-10 leading-relaxed">
+          Este portfólio reúne minha evolução em desenvolvimento, interfaces e segurança aplicada.
+        </p>
+
+        <div data-hero-meta className="flex flex-wrap items-center justify-center gap-3 md:hidden">
+          <MagneticButton href="#projetos" variant="primary">Projetos</MagneticButton>
+          <MagneticButton href="https://www.linkedin.com/in/iannarthur/">LinkedIn</MagneticButton>
+          <MagneticButton href="https://github.com/iannxz">GitHub</MagneticButton>
+        </div>
+
+        <div data-hero-meta className="hidden flex-wrap items-center justify-center gap-3 md:flex">
           <MagneticButton href="#projetos" variant="primary">Ver projetos</MagneticButton>
           <MagneticButton href="https://github.com/iannxz">GitHub</MagneticButton>
           <MagneticButton href="#contato">Contato</MagneticButton>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground sm:flex">
         <span>Role para conhecer</span>
         <span className="block w-px h-10 bg-gradient-to-b from-foreground/60 to-transparent animate-pulse" />
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { phase } from "@/hooks/useScrollPhase";
 
 const projects = [
@@ -60,9 +61,34 @@ export default function Ch4Projects() {
   const ref = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [missingImages, setMissingImages] = useState<Record<string, boolean>>({});
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        ScrollTrigger.create({
+          trigger: ref.current,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => (phase.mode = "link"),
+          onEnterBack: () => (phase.mode = "link"),
+        });
+
+        gsap.from("[data-project-mobile]", {
+          opacity: 0,
+          y: 28,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 78%",
+          },
+        });
+
+        return;
+      }
+
       ScrollTrigger.create({
         trigger: ref.current,
         start: "top top",
@@ -76,7 +102,7 @@ export default function Ch4Projects() {
       });
     }, ref);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   const renderProjectVisual = (project: (typeof projects)[number]) => {
     if (!project.image) {
@@ -91,6 +117,8 @@ export default function Ch4Projects() {
           <img
             src={project.image}
             alt={`Preview do projeto ${project.title}`}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
             onError={() =>
               setMissingImages((current) =>
@@ -109,6 +137,63 @@ export default function Ch4Projects() {
       </>
     );
   };
+
+  if (isMobile) {
+    return (
+      <section id="projetos" ref={ref} className="relative py-20">
+        <div className="container max-w-6xl">
+          <div className="mb-6 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            {"Capítulo 04 · Projetos"}
+          </div>
+          <h2 className="mb-10 max-w-2xl font-display text-3xl font-medium leading-tight">
+            {"Projetos para avaliar prática, estudo e evolução técnica."}
+          </h2>
+
+          <div className="space-y-8">
+            {projects.map((p) => (
+              <article
+                key={p.title}
+                data-project-mobile
+                className="overflow-hidden rounded-xl border border-border bg-card/40 backdrop-blur-sm"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-card/60 to-transparent">
+                  {renderProjectVisual(p)}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                    <span>{p.n}</span>
+                    <span className="truncate">{p.subtitle}</span>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <h3 className="mb-3 font-display text-2xl font-medium leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                    {p.desc}
+                  </p>
+                  <div className="mb-5 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span key={t} className="rounded-full border border-border px-3 py-1 text-xs text-foreground/70">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-sm transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    {"Ver no GitHub"} <span>{"\u2192"}</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projetos" ref={ref} className="relative" style={{ height: `${projects.length * 100}vh` }}>

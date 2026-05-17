@@ -21,9 +21,11 @@ export default function OrbitalCore() {
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d", { alpha: true })!;
     let raf = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const NODE_COUNT = isMobile ? NODE_COUNT_MOBILE : NODE_COUNT_DESKTOP;
+    let drawOnce: (() => void) | null = null;
 
     const nodes: Node[] = Array.from({ length: NODE_COUNT }, (_, i) => ({
       baseAngle: (i / NODE_COUNT) * Math.PI * 2 + Math.random() * 0.4,
@@ -41,6 +43,9 @@ export default function OrbitalCore() {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (reducedMotion) {
+        window.requestAnimationFrame(() => drawOnce?.());
+      }
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -52,7 +57,7 @@ export default function OrbitalCore() {
     const cur = { ...targets };
 
     const draw = () => {
-      t += 0.006;
+      if (!reducedMotion) t += 0.006;
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       const pointerX = phase.pointer.x - 0.5;
@@ -97,7 +102,7 @@ export default function OrbitalCore() {
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         const angle = n.baseAngle + t * n.speed;
-        let r = n.baseRadius * cur.scale * (1 + pointerInfluence * 0.06) * baseScale;
+        const r = n.baseRadius * cur.scale * (1 + pointerInfluence * 0.06) * baseScale;
         const [ox, oy] = clusterOffsets[n.cluster];
         const spreadPx = 140 * (cur.spread + pointerInfluence * 0.08) * baseScale;
         let x = cx + Math.cos(angle) * r + ox * spreadPx;
@@ -173,9 +178,12 @@ export default function OrbitalCore() {
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, W, H);
 
-      raf = requestAnimationFrame(draw);
+      if (!reducedMotion) {
+        raf = requestAnimationFrame(draw);
+      }
     };
-    raf = requestAnimationFrame(draw);
+    drawOnce = draw;
+    draw();
 
     return () => {
       cancelAnimationFrame(raf);

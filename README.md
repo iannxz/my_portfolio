@@ -262,7 +262,7 @@ flowchart LR
 Este portfólio foi construído para mostrar repertório técnico, direção visual e clareza de pensamento
 no mesmo lugar. Ele fala de desenvolvimento, mas também de processo, critério e segurança.
 
-Se você quiser conversar sobre projetos, oportunidades ou tecnologia, os links estão aqui:
+Para contato profissional, oportunidades ou troca técnica.:
 
 - GitHub: https://github.com/iannxz
 - LinkedIn: https://www.linkedin.com/in/iannarthur/

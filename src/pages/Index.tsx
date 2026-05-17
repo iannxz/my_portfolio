@@ -39,7 +39,7 @@ const Index = () => {
       <ProgressRail />
 
       {/* Top brand */}
-      <header className="fixed left-6 top-6 z-40 text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+      <header className="fixed left-6 top-6 z-40 text-[11px] uppercase tracking-[0.28em] text-muted-foreground md:text-[10px] md:tracking-[0.4em]">
         IAM <span className="text-foreground/60">/</span> portfolio
       </header>
 

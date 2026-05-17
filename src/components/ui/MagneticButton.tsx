@@ -10,7 +10,11 @@ interface Props {
 }
 
 export default function MagneticButton({ children, href, onClick, variant = "ghost", className }: Props) {
-  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+  const ref = useRef<HTMLElement | null>(null);
+
+  const setRef = (node: HTMLAnchorElement | HTMLButtonElement | null) => {
+    ref.current = node;
+  };
 
   const onMove = (e: MouseEvent) => {
     const el = ref.current;
@@ -27,7 +31,7 @@ export default function MagneticButton({ children, href, onClick, variant = "gho
 
   const styles = cn(
     "group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-300",
-    "border rounded-full backdrop-blur-sm will-change-transform",
+    "border rounded-full backdrop-blur-sm will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     variant === "primary"
       ? "bg-foreground text-background border-foreground hover:bg-accent hover:border-accent hover:text-accent-foreground"
       : "bg-background/30 text-foreground border-border hover:border-foreground/60",
@@ -44,7 +48,7 @@ export default function MagneticButton({ children, href, onClick, variant = "gho
   if (href) {
     return (
       <a
-        ref={ref as any}
+        ref={setRef}
         href={href}
         target={href.startsWith("http") ? "_blank" : undefined}
         rel="noreferrer"
@@ -57,7 +61,7 @@ export default function MagneticButton({ children, href, onClick, variant = "gho
     );
   }
   return (
-    <button ref={ref as any} onMouseMove={onMove} onMouseLeave={onLeave} onClick={onClick} className={styles}>
+    <button ref={setRef} onMouseMove={onMove} onMouseLeave={onLeave} onClick={onClick} className={styles}>
       {content}
     </button>
   );

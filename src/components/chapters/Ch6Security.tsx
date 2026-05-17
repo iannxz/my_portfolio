@@ -37,6 +37,14 @@ const certs = [
   { t: "Aplicativos Low Code (Oracle APEX)", e: "Oracle" },
   { t: "Microsoft Power BI", e: "SENAI" },
   { t: "Ética na Inteligência Artificial", e: "SENAI" },
+  { t: "Axonius Platform Basics", e: "Axonius" },
+  { t: "Implantação de Serviços em Nuvem - AWS Cloud Practitioner Foundational", e: "AWS" },
+  { t: "Dynamic Analyst", e: "LetsDefend" },
+  { t: "Inteligências Artificiais Generativas Aplicada a Programação - ChatGPT", e: "SENAI" },
+  { t: "Por dentro da Segurança Cibernética", e: "SENAI" },
+  { t: "Programação em Python", e: "SENAI" },
+  { t: "Fundamentos do Python 1", e: "Senai" }
+  
 ];
 
 export default function Ch6Security() {
@@ -85,11 +93,12 @@ export default function Ch6Security() {
   return (
     <section
       ref={ref}
+      id="seguranca"
       className="relative overflow-hidden pt-32 pb-14 md:pt-48 md:pb-20"
     >
       <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="container max-w-6xl relative z-10">
-        <div className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+        <div className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground mb-6 md:text-[10px] md:tracking-[0.4em]">
           Capítulo 06 · Segurança aplicada
         </div>
         <h2 className="font-display text-3xl md:text-5xl font-medium mb-8 max-w-3xl leading-tight">
@@ -113,7 +122,7 @@ export default function Ch6Security() {
               data-panel
               className="relative p-6 bg-card/60 backdrop-blur-sm hover:bg-card transition-colors duration-500 group min-h-[120px] flex flex-col justify-between"
             >
-              <div className="text-[10px] tracking-[0.3em] uppercase text-accent">
+              <div className="text-[11px] tracking-[0.22em] uppercase text-accent md:text-[10px] md:tracking-[0.3em]">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <h3 className="font-display text-base md:text-lg leading-snug">{c}</h3>
@@ -122,7 +131,7 @@ export default function Ch6Security() {
           ))}
         </div>
 
-        <div className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+        <div className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground mb-6 md:text-[10px] md:tracking-[0.4em]">
           Certificações & cursos
         </div>
         <div data-certs-grid className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
@@ -135,7 +144,7 @@ export default function Ch6Security() {
               <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
               <div className="flex-1">
                 <div className="text-sm text-foreground/90">{c.t}</div>
-                <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-0.5">{c.e}</div>
+                <div className="text-[11px] tracking-[0.16em] uppercase text-muted-foreground mt-0.5 md:text-[10px] md:tracking-[0.2em]">{c.e}</div>
               </div>
             </div>
           ))}
@@ -143,12 +152,12 @@ export default function Ch6Security() {
 
         <div className="mt-16 grid sm:grid-cols-2 gap-6 max-w-2xl">
           <div className="p-5 border border-border rounded-xl bg-card/40">
-            <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Idiomas</div>
+            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground mb-2 md:text-[10px] md:tracking-[0.3em]">Idiomas</div>
             <div className="text-sm">Português — fluente / nativo</div>
             <div className="text-sm">Inglês — básico a intermediário</div>
           </div>
           <div className="p-5 border border-border rounded-xl bg-card/40">
-            <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Destaque</div>
+            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground mb-2 md:text-[10px] md:tracking-[0.3em]">Destaque</div>
             <div className="text-sm leading-relaxed">
               Selecionado em concurso de inglês Microsoft × SENAI Sumaré — bolsa concedida a apenas 20 estudantes da região.
             </div>

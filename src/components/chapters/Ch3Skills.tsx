@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { phase } from "@/hooks/useScrollPhase";
 
 const groups = [
@@ -12,6 +13,7 @@ const groups = [
 
 export default function Ch3Skills() {
   const ref = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,6 +26,24 @@ export default function Ch3Skills() {
       });
 
       const cards = gsap.utils.toArray<HTMLElement>("[data-skill-card]");
+
+      if (isMobile) {
+        cards.forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 28,
+            duration: 0.65,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+            },
+          });
+        });
+
+        return;
+      }
+
       cards.forEach((el, i) => {
         gsap.fromTo(
           el,
@@ -53,16 +73,16 @@ export default function Ch3Skills() {
       });
     }, ref);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "260vh" }}>
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+    <section ref={ref} id="skills" className="relative" style={isMobile ? undefined : { height: "260vh" }}>
+      <div className={isMobile ? "py-24" : "sticky top-0 h-screen flex items-center overflow-hidden"}>
         <div className="container max-w-6xl">
-          <div className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
+          <div className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground mb-6 md:text-[10px] md:tracking-[0.4em]">
             Capítulo 03 · Sistema
           </div>
-          <h2 className="font-display text-3xl md:text-5xl font-medium mb-16 max-w-2xl leading-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-medium mb-10 md:mb-16 max-w-2xl leading-tight">
             Skills como módulos<br/>de um mesmo sistema.
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -70,11 +90,11 @@ export default function Ch3Skills() {
               <div
                 key={g.title}
                 data-skill-card
-                className="relative p-8 border border-border rounded-2xl bg-card/40 backdrop-blur-sm"
+                className="relative p-6 border border-border rounded-2xl bg-card/40 backdrop-blur-sm md:p-8"
               >
                 <div className="flex items-baseline justify-between mb-6">
                   <h3 className="font-display text-2xl font-medium">{g.title}</h3>
-                  <span className="text-[10px] tracking-[0.3em] text-muted-foreground">
+                  <span className="text-[11px] tracking-[0.22em] text-muted-foreground md:text-[10px] md:tracking-[0.3em]">
                     {String(i + 1).padStart(2, "0")} / 04
                   </span>
                 </div>
